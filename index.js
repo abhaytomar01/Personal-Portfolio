@@ -1,5 +1,5 @@
 // ========================tech list==================
-const techs = ['JavaScript', 'React', 'Tailwind', 'Html', 'CSS', 'jQuery', 'Github'];
+const techs = ['HTML', 'CSS', 'MongoDB', 'JavaScript', 'ExpressJS', 'Tailwind CSS', 'ReactJS', 'Python', 'NodeJS'];
 
 const descTechs = document.querySelectorAll('.tech');
 
@@ -15,26 +15,125 @@ socialIcons.forEach(function(value, key) {
     value.href = socialLinks[key];
 })
 
+// ====================Mousehover section==============================
+
+// const canvas = document.getElementById("canvas");
+// const ctx = canvas.getContext("2d");
+// canvas.width = window.innerWidth;
+// canvas.height = window.innerHeight;
+// let spots = [];
+// let hue = 0;
+
+// const mouse = {
+//     x: undefined,
+//     y: undefined
+// }
+// canvas.addEventListener('mousemove', function(event){
+//     mouse.x = event.x;
+//     mouse.y = event.y;
+//     for (let i = 0; i < 3; i++){
+//         spots.push(new Particle());
+//     }
+// });
+
+// class Particle{
+//     constructor(){
+//         this.x = mouse.x;
+//         this.y = mouse.y;
+//         this.size = Math.random() * 2 + 0.5;
+//         this.speedX = Math.random() * 2 - 1;
+//         this.speedY = Math.random() * 2 - 1;
+//         this.color = '#4fdfff';
+//     }
+//     update(){
+//         this.x += this.speedX;
+//         this.y += this.speedY;
+//         if (this.size > 0.1) this.size -= 0.03;
+//     }
+//     draw(){
+//         ctx.fillStyle = this.color;
+//         ctx.beginPath();
+//         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+//         ctx.fill();
+//     }
+// };
+
+// function handleParticle(){
+//     for (let i = 0; i < spots.length; i++){
+//         spots[i].update();
+//         spots[i].draw();
+//         for (let j = i; j < spots.length; j++){
+//             const dx = spots[i].x - spots[j].x;
+//             const dy = spots[i].y - spots[j].y;
+//             const distance = Math.sqrt(dx * dx + dy * dy);
+//             if ( distance < 90){
+//                 ctx.beginPath();
+//                 ctx.strokeStyle = spots[i].color;
+//                 ctx.lineWidth = spots[i].size / 10;
+//                 ctx.moveTo(spots[i].x,  spots[i].y);
+//                 ctx.lineTo(spots[i].x, spots[i].y);
+//                 ctx.stroke();
+//             }
+//         }
+//         if(spots[i].size <= 0.3){
+//             spots.splice(i,1); i--;
+//         }
+//     }
+// };
+
+// function animate(){
+//     ctx.clearRect(0,0, canvas.width, canvas.height);
+//     handleParticle();
+//     hue++;
+//     requestAnimationFrame(animate);
+// };
+
+// window.addEventListener('resize', function(){
+//     canvas.width = this.innerWidth;
+//     canvas.height = this.innerHeight;
+//     init();
+// });
+// window.addEventListener('mouseout', function(){
+//     mouse.x = undefined;
+//     mouse.y = undefined;
+// });
+
+// animate();
+
+// ---------------- CURSOR -------------------------
+
+var main = document.querySelector('#main');
+    var cursor = document.querySelector('#cursor');
+     
+     main,addEventListener('mousemove', function(dets){
+        gsap.to(cursor, {
+            x:dets.x,
+            y:dets.y,
+            duration:1,
+            ease:"circ"
+        })
+     });
+
 // ====================projects section==============================
 
 const projects = [
     {
         projectImageUrl: './assets/gym.png',
         projectName: 'The Fitness Club',
-        projectDescription: "HTML Frontend Project. The Fitness CLub, a part of this esteemed legacy, has expanded its presence across various cities, aiming to empower individuals to achieve their fitness goals, regardless of their fitness levels or aspirations.",
-        projectStack: ['JavaScript', 'HTML', 'CSS', 'MediaQuery', 'VS Code']
+        projectDescription: "HTML Frontend Project. The Fitness Club, a part of this esteemed legacy, has expanded its presence across various cities, aiming to empower individuals to achieve their fitness goals, regardless of their fitness levels or aspirations.",
+        projectStack: ['HTML', 'CSS', 'JavaScript', 'Media query']
     },
     {
-        projectImageUrl: './assets/Travel2.png',
+        projectImageUrl: './assets/Travel.png',
         projectName: "Book My Trip",
         projectDescription: "bookmytrip is a well-known travel guidebook publisher that offers a wide range of travel guides, maps, and other travel-related resources.",
-        projectStack: ['HTML', 'CSS', 'JS', 'VS Code']
+        projectStack: ['HTML', 'CSS', 'JS', 'Media query']
     },
     {
-        projectImageUrl: './assets/Dice.PNG',
-        projectName: 'No Greed',
-        projectDescription: 'No Greed is a single page, 2-player dice game which showcases my JavaScript logical skills.',
-        projectStack: ['Responsive', 'JavaScript', 'Mathematics', 'CSS']
+        projectImageUrl: './assets/SimpleNoteTakingImg.png',
+        projectName: 'Simple Note Taking App',
+        projectDescription: 'A Simple Note Taking App, involves implementing a set of core features to ensure it is useful and user-friendly. User can Create Note, Delete Note, Search Note, and use Toggle Mode',
+        projectStack: ['HTML', 'CSS', 'JavaScript', 'React JS']
 
     },
     // {
