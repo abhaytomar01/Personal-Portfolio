@@ -24,7 +24,7 @@ html {
     overflow-x: hidden;
 }
 body{
-  cursor: none;
+  cursor: pointer;
 }
 body,
 button,

@@ -110,7 +110,7 @@ var main = document.querySelector('#main');
             x:dets.x,
             y:dets.y,
             duration:1,
-            ease:"circ"
+            ease:0.3
         })
      });
 
@@ -118,9 +118,9 @@ var main = document.querySelector('#main');
 
 const projects = [
     {
-        projectImageUrl: './assets/gym.png',
-        projectName: 'The Fitness Club',
-        projectDescription: "HTML Frontend Project. The Fitness Club, a part of this esteemed legacy, has expanded its presence across various cities, aiming to empower individuals to achieve their fitness goals, regardless of their fitness levels or aspirations.",
+        projectImageUrl: './assets/Sundown_image.png',
+        projectName: 'Sundown',
+        projectDescription: "HTML Frontend Project. Sundown is a animated website that was created by me from original website(sundown-studio)",
         projectStack: ['HTML', 'CSS', 'JavaScript', 'Media query']
     },
     {
