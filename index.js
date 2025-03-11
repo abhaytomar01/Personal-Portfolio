@@ -1,5 +1,5 @@
 // ========================tech list==================
-const techs = ['HTML', 'CSS', 'MongoDB', 'JavaScript', 'ExpressJS', 'Tailwind CSS', 'ReactJS', 'Python', 'NodeJS'];
+const techs = ['C/C++', 'Embedded C', 'RTOS', 'Python', 'ESP32/ARM/TI', 'I2C/SPI/UART/CAN' ];
 
 const descTechs = document.querySelectorAll('.tech');
 
