@@ -118,24 +118,24 @@ var main = document.querySelector('#main');
 
 const projects = [
     {
+        projectImageUrl: './assets/MagneticmeterImg.jpeg',
+        projectName: 'Magnetic Meter for CNC Machine',
+        projectDescription: ' Developed an Embedded system to use this as a feedback system for CNC Machine for checking X, Y and Z coordinates using AS5600 magnetic sensor and MSPMOL1306 controller.',
+        projectStack: ['ESP32', 'MSPMOL1306', 'AS5600',]
+
+    },
+    {
+        projectImageUrl: './assets/StepperMotorImg2.jpeg',
+        projectName: "Stepper Motor Controller",
+        projectDescription: "Developed an embedded system to control a stepper motor using ESP32 Implemented a TFT touchscreen UI for motor control with real-time feedback. Designed hierarchical menu navigation using a rotary encoder and button controls",
+        projectStack: ['ESP32', 'Driver', 'TFT Display', 'Rotary Encoder']
+    },
+    {
         projectImageUrl: './assets/Sundown_image.png',
         projectName: 'Sundown',
         projectDescription: "HTML Frontend Project. Sundown is a animated website that was created by me from original website(sundown-studio)",
         projectStack: ['HTML', 'CSS', 'JavaScript', 'Media query']
-    },
-    {
-        projectImageUrl: './assets/Travel.png',
-        projectName: "Book My Trip",
-        projectDescription: "bookmytrip is a well-known travel guidebook publisher that offers a wide range of travel guides, maps, and other travel-related resources.",
-        projectStack: ['HTML', 'CSS', 'JS', 'Media query']
-    },
-    {
-        projectImageUrl: './assets/SimpleNoteTakingImg.png',
-        projectName: 'Simple Note Taking App',
-        projectDescription: 'A Simple Note Taking App, involves implementing a set of core features to ensure it is useful and user-friendly. User can Create Note, Delete Note, Search Note, and use Toggle Mode',
-        projectStack: ['HTML', 'CSS', 'JavaScript', 'React JS']
-
-    },
+    }
     // {
     //     projectImageUrl: 'https://user-images.githubusercontent.com/77793810/122582987-67230a00-d076-11eb-8079-a43185265951.PNG',
     //     projectName: 'ONN Bikes Clone',
