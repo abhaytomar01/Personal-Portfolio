@@ -721,6 +721,7 @@ a {
 /* testimonials section  */
 
 #blogs {
+    /* background-color: #373A40; */
     background-color: var(--color-primary-dark);
     position: relative;
 }
@@ -1058,7 +1059,7 @@ height: 25%;
       width: 80%;
       margin: auto;
       display: grid;
-    
+      background-color: #373A40;
       grid-template-columns: repeat(2, 1fr);
       grid-gap: 10px;
       color: #fff;
@@ -1090,7 +1091,7 @@ height: 25%;
       width: 95%;
       margin: auto;
       display: grid;
-    
+      background-color: #373A40;
       grid-template-columns: repeat(1, 1fr);
       grid-gap: 10px;
       color: #fff;
@@ -1282,7 +1283,9 @@ height: 25%;
   }
   
   #statistics{
-    background-color: ;
+    /* no color */
+    background-color: #373A40;
+;
   }
   /* skills ends  */
 
