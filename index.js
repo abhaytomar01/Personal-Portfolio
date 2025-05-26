@@ -683,31 +683,40 @@ var Input = {
 // ====================projects section==============================
 
 const projects = [
-    {
-        projectImageUrl: './assets/MagneticmeterImg.jpeg',
-        projectName: 'Magnetic Meter for CNC Machine',
-        projectDescription: ' Developed an Embedded system to use this as a feedback system for CNC Machine for checking X, Y and Z coordinates using AS5600 magnetic sensor and MSPMOL1306 controller.',
-        projectStack: ['ESP32', 'MSPMOL1306', 'AS5600',]
-
+   {
+        projectImageUrl: './assets/TDR_SS.png',
+        projectName: 'TDR Foundation Official Website',
+        projectDescription: "I was responsible for Design, develop and maintain the official website of TDR Foundation. Customization of layout and themes according to demand, added new features like enhanced security, add membership features for our clients etc.",
+        projectStack: ['HTML', 'CSS', 'JavaScript', 'PHP', "MySQL", "Bootstrap"]
     },
     {
-        projectImageUrl: './assets/StepperMotorImg2.jpeg',
-        projectName: "Stepper Motor Controller",
-        projectDescription: "Developed an embedded system to control a stepper motor using ESP32 Implemented a TFT touchscreen UI for motor control with real-time feedback. Designed hierarchical menu navigation using a rotary encoder and button controls",
-        projectStack: ['ESP32', 'Driver', 'TFT Display', 'Rotary Encoder']
+        projectImageUrl: './assets/svurg.png',
+        projectName: 'SVURG Official Website',
+        projectDescription: "I was responsible for Design, develop and maintain the official website of SVURG Digital System Soutions. Customization of layout and themes according to demand, added new features like enhanced security, add membership features for our clients etc.",
+        projectStack: ['HTML', 'CSS', 'JavaScript', 'PHP', "MySQL", "Bootstrap"]
     },
     {
-        projectImageUrl: './assets/Sundown_image.png',
-        projectName: 'Sundown',
-        projectDescription: "HTML Frontend Project. Sundown is a animated website that was created by me from original website(sundown-studio)",
-        projectStack: ['HTML', 'CSS', 'JavaScript', 'Media query']
-    }
+        projectImageUrl: './assets/masterguardSite_SS.png',
+        projectName: 'Masterguard Official Website',
+        projectDescription: "This project showcases my frontend skills of building a Business web's UI along with making it responsive.",
+        projectStack: ['HTML', 'CSS', 'Bootstrap','MySQL', 'WordPress']
+    },
     // {
-    //     projectImageUrl: 'https://user-images.githubusercontent.com/77793810/122582987-67230a00-d076-11eb-8079-a43185265951.PNG',
-    //     projectName: 'ONN Bikes Clone',
-    //     projectDescription: "This project showcases my frontend skills of building a  E-commerce web's UI along with making it responsive.By using this website you can book a bike anytime anywhere. With the very user-friendly interface, it will take hardly 5 minutes. And tada! you got your bike.",
-    //     projectStack: ['JavaScript', 'Bootstrap', 'CSS', 'VS Code']
-    // }
+    //     projectImageUrl: './assets/MagneticmeterImg.jpeg',
+    //     projectName: 'Magnetic Meter for CNC Machine',
+    //     projectDescription: ' Developed an Embedded system to use this as a feedback system for CNC Machine for checking X, Y and Z coordinates using AS5600 magnetic sensor and MSPMOL1306 controller.',
+    //     projectStack: ['ESP32', 'MSPMOL1306', 'AS5600',]
+
+    // },
+    // {
+    //     projectImageUrl: './assets/StepperMotorImg2.jpeg',
+    //     projectName: "Stepper Motor Controller",
+    //     projectDescription: "Developed an embedded system to control a stepper motor using ESP32 Implemented a TFT touchscreen UI for motor control with real-time feedback. Designed hierarchical menu navigation using a rotary encoder and button controls",
+    //     projectStack: ['ESP32', 'Driver', 'TFT Display', 'Rotary Encoder']
+    // },
+    
+    
+    
     
 ];
 
