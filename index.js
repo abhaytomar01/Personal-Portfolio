@@ -1,853 +1,703 @@
-// ========================tech list==================
-const techs = ['C/C++', 'Embedded C', 'RTOS', 'Python', 'ESP32/ARM/TI', 'I2C/SPI/UART/CAN' ];
+// Modern Portfolio JavaScript - Vanilla JS Version
+;(() => {
+  // Declare emailjs and GitHubCalendar variables
+  let emailjs
+  let GitHubCalendar
 
-const descTechs = document.querySelectorAll('.tech');
-
-descTechs.forEach(function(value, key){
-    value.textContent = techs[key];
-});
-// =======================social links====================
-const socialLinks = ['https://www.linkedin.com/in/abhay-tomar-262a33250/', 'https://github.com/abhaytomar01/', 'https://www.instagram.com/abhaytomar01/', 'https://twitter.com/abhaytomar_01'];
-
-const socialIcons = document.querySelectorAll('.social-links a');
-
-socialIcons.forEach(function(value, key) {
-    value.href = socialLinks[key];
-})
-
-// ====================Mousehover section==============================
-
-// const canvas = document.getElementById("canvas");
-// const ctx = canvas.getContext("2d");
-// canvas.width = window.innerWidth;
-// canvas.height = window.innerHeight;
-// let spots = [];
-// let hue = 0;
-
-// const mouse = {
-//     x: undefined,
-//     y: undefined
-// }
-// canvas.addEventListener('mousemove', function(event){
-//     mouse.x = event.x;
-//     mouse.y = event.y;
-//     for (let i = 0; i < 3; i++){
-//         spots.push(new Particle());
-//     }
-// });
-
-// class Particle{
-//     constructor(){
-//         this.x = mouse.x;
-//         this.y = mouse.y;
-//         this.size = Math.random() * 2 + 0.5;
-//         this.speedX = Math.random() * 2 - 1;
-//         this.speedY = Math.random() * 2 - 1;
-//         this.color = '#4fdfff';
-//     }
-//     update(){
-//         this.x += this.speedX;
-//         this.y += this.speedY;
-//         if (this.size > 0.1) this.size -= 0.03;
-//     }
-//     draw(){
-//         ctx.fillStyle = this.color;
-//         ctx.beginPath();
-//         ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-//         ctx.fill();
-//     }
-// };
-
-// function handleParticle(){
-//     for (let i = 0; i < spots.length; i++){
-//         spots[i].update();
-//         spots[i].draw();
-//         for (let j = i; j < spots.length; j++){
-//             const dx = spots[i].x - spots[j].x;
-//             const dy = spots[i].y - spots[j].y;
-//             const distance = Math.sqrt(dx * dx + dy * dy);
-//             if ( distance < 90){
-//                 ctx.beginPath();
-//                 ctx.strokeStyle = spots[i].color;
-//                 ctx.lineWidth = spots[i].size / 10;
-//                 ctx.moveTo(spots[i].x,  spots[i].y);
-//                 ctx.lineTo(spots[i].x, spots[i].y);
-//                 ctx.stroke();
-//             }
-//         }
-//         if(spots[i].size <= 0.3){
-//             spots.splice(i,1); i--;
-//         }
-//     }
-// };
-
-// function animate(){
-//     ctx.clearRect(0,0, canvas.width, canvas.height);
-//     handleParticle();
-//     hue++;
-//     requestAnimationFrame(animate);
-// };
-
-// window.addEventListener('resize', function(){
-//     canvas.width = this.innerWidth;
-//     canvas.height = this.innerHeight;
-//     init();
-// });
-// window.addEventListener('mouseout', function(){
-//     mouse.x = undefined;
-//     mouse.y = undefined;
-// });
-
-// animate();
-
-// ---------------- CURSOR -------------------------
-
-// var main = document.querySelector('#main');
-//     var cursor = document.querySelector('#cursor');
-     
-//      main,addEventListener('mousemove', function(dets){
-//         gsap.to(cursor, {
-//             x:dets.x,
-//             y:dets.y,
-//             duration:1,
-//             ease:0.3
-//         })
-//      });
-
-var Input = {
-    keys: [],
-    mouse: {
-      left: false,
-      right: false,
-      middle: false,
-      x: 0,
-      y: 0
+  class ModernPortfolio {
+    constructor() {
+      this.init()
     }
-  };
-  for (var i = 0; i < 230; i++) {
-    Input.keys.push(false);
-  }
-  document.addEventListener("keydown", function(event) {
-    Input.keys[event.keyCode] = true;
-  });
-  document.addEventListener("keyup", function(event) {
-    Input.keys[event.keyCode] = false;
-  });
-  document.addEventListener("mousedown", function(event) {
-    if ((event.button = 0)) {
-      Input.mouse.left = true;
+
+    init() {
+      this.setupLoadingScreen()
+      this.setupThemeToggle()
+      this.setupProgressBar()
+      this.setupMobileNavigation()
+      this.setupTypingAnimation()
+      this.setupParticles()
+      this.setupMouseParallax() // Add this line
+      this.setupProjectsCarousel() // Add this line
+      this.setupScrollAnimations()
+      this.setupSkillsAnimation()
+      this.setupStatsCounter()
+      this.setupContactForm()
+      this.setupGithubCalendar()
+      this.setupSmoothScrolling()
     }
-    if ((event.button = 1)) {
-      Input.mouse.middle = true;
+
+    // Loading Screen
+    setupLoadingScreen() {
+      window.addEventListener("load", () => {
+        const loadingScreen = document.getElementById("loading-screen")
+        setTimeout(() => {
+          loadingScreen.style.opacity = "0"
+          setTimeout(() => {
+            loadingScreen.style.display = "none"
+          }, 500)
+        }, 2000)
+      })
     }
-    if ((event.button = 2)) {
-      Input.mouse.right = true;
+
+    // Theme Toggle
+    setupThemeToggle() {
+      const themeToggle = document.getElementById("theme-toggle")
+      const themeIcon = document.getElementById("theme-icon")
+      const currentTheme = localStorage.getItem("theme") || "dark"
+
+      document.documentElement.setAttribute("data-theme", currentTheme)
+      this.updateThemeIcon(themeIcon, currentTheme)
+
+      themeToggle.addEventListener("click", () => {
+        const currentTheme = document.documentElement.getAttribute("data-theme")
+        const newTheme = currentTheme === "dark" ? "light" : "dark"
+
+        document.documentElement.setAttribute("data-theme", newTheme)
+        localStorage.setItem("theme", newTheme)
+        this.updateThemeIcon(themeIcon, newTheme)
+      })
     }
-  });
-  document.addEventListener("mouseup", function(event) {
-    if ((event.button = 0)) {
-      Input.mouse.left = false;
+
+    updateThemeIcon(icon, theme) {
+      icon.className = theme === "dark" ? "uil uil-sun" : "uil uil-moon"
     }
-    if ((event.button = 1)) {
-      Input.mouse.middle = false;
+
+    // Progress Bar
+    setupProgressBar() {
+      const progressBar = document.getElementById("progress-bar")
+
+      window.addEventListener("scroll", () => {
+        const scrollTop = window.pageYOffset
+        const docHeight = document.body.offsetHeight - window.innerHeight
+        const scrollPercent = (scrollTop / docHeight) * 100
+        progressBar.style.width = scrollPercent + "%"
+      })
     }
-    if ((event.button = 2)) {
-      Input.mouse.right = false;
-    }
-  });
-  document.addEventListener("mousemove", function(event) {
-    Input.mouse.x = event.clientX;
-    Input.mouse.y = event.clientY;
-  });
-  //Sets up canvas
-  var canvas = document.createElement("canvas");
-  document.body.appendChild(canvas);
-  canvas.width = Math.max(window.innerWidth, window.innerWidth);
-  
-  //canvas.height = Math.max(window.innerWidth, window.innerWidth);
-  
-  canvas.height = window.innerHeight;
-  canvas.style.position = "absolute";
-  canvas.style.left = "0px";
-  canvas.style.top = "0px";
-  document.body.style.overflow = "hidden";
-  var ctx = canvas.getContext("2d");
-  //Necessary classes
-  var segmentCount = 0;
-  class Segment {
-    constructor(parent, size, angle, range, stiffness) {
-      segmentCount++;
-      this.isSegment = true;
-      this.parent = parent; //Segment which this one is connected to
-      if (typeof parent.children == "object") {
-        parent.children.push(this);
+
+    // Mobile Navigation
+    setupMobileNavigation() {
+      const openBtn = document.getElementById("open-btn")
+      const closeBtn = document.getElementById("close-btn")
+      const mobileNav = document.getElementById("mobile-nav")
+      const navLinks = document.querySelectorAll(".item-open")
+
+      if (openBtn && closeBtn && mobileNav) {
+        // Set initial state - show hamburger, hide close button
+        openBtn.style.display = "block"
+        closeBtn.style.display = "none"
+
+        openBtn.addEventListener("click", () => {
+          mobileNav.classList.add("active")
+          openBtn.style.display = "none"
+          closeBtn.style.display = "block"
+        })
+
+        closeBtn.addEventListener("click", () => {
+          mobileNav.classList.remove("active")
+          openBtn.style.display = "block"
+          closeBtn.style.display = "none"
+        })
+
+        navLinks.forEach((link) => {
+          link.addEventListener("click", () => {
+            mobileNav.classList.remove("active")
+            openBtn.style.display = "block"
+            closeBtn.style.display = "none"
+          })
+        })
       }
-      this.children = []; //Segments connected to this segment
-      this.size = size; //Distance from parent
-      this.relAngle = angle; //Angle relative to parent
-      this.defAngle = angle; //Default angle relative to parent
-      this.absAngle = parent.absAngle + angle; //Angle relative to x-axis
-      this.range = range; //Difference between maximum and minimum angles
-      this.stiffness = stiffness; //How closely it conforms to default angle
-      this.updateRelative(false, true);
     }
-    updateRelative(iter, flex) {
-      this.relAngle =
-        this.relAngle -
-        2 *
-          Math.PI *
-          Math.floor((this.relAngle - this.defAngle) / 2 / Math.PI + 1 / 2);
-      if (flex) {
-        //		this.relAngle=this.range/
-        //				(1+Math.exp(-4*(this.relAngle-this.defAngle)/
-        //				(this.stiffness*this.range)))
-        //			  -this.range/2+this.defAngle;
-        this.relAngle = Math.min(
-          this.defAngle + this.range / 2,
-          Math.max(
-            this.defAngle - this.range / 2,
-            (this.relAngle - this.defAngle) / this.stiffness + this.defAngle
-          )
-        );
-      }
-      this.absAngle = this.parent.absAngle + this.relAngle;
-      this.x = this.parent.x + Math.cos(this.absAngle) * this.size; //Position
-      this.y = this.parent.y + Math.sin(this.absAngle) * this.size; //Position
-      if (iter) {
-        for (var i = 0; i < this.children.length; i++) {
-          this.children[i].updateRelative(iter, flex);
+
+    // Typing Animation
+    setupTypingAnimation() {
+      const typingElement = document.getElementById("typing-name")
+      if (!typingElement) return
+
+      const text = "Abhay Tomar"
+      let index = 0
+      let isDeleting = false
+
+      const typeWriter = () => {
+        const currentText = text.substring(0, index)
+        typingElement.textContent = currentText
+
+        if (!isDeleting && index < text.length) {
+          index++
+          setTimeout(typeWriter, 100)
+        } else if (isDeleting && index > 0) {
+          index--
+          setTimeout(typeWriter, 50)
+        } else if (!isDeleting && index === text.length) {
+          setTimeout(() => {
+            isDeleting = true
+            typeWriter()
+          }, 2000)
+        } else if (isDeleting && index === 0) {
+          setTimeout(() => {
+            isDeleting = false
+            typeWriter()
+          }, 500)
         }
       }
+
+      setTimeout(typeWriter, 2500)
     }
-    draw(iter) {
-      ctx.beginPath();
-      ctx.moveTo(this.parent.x, this.parent.y);
-      ctx.lineTo(this.x, this.y);
-      ctx.stroke();
-      if (iter) {
-        for (var i = 0; i < this.children.length; i++) {
-          this.children[i].draw(true);
+
+    // Floating Particles
+    setupParticles() {
+      const particlesContainer = document.getElementById("particles")
+      if (!particlesContainer) return
+
+      const particleCount = 60
+
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement("div")
+        particle.className = "particle"
+        particle.style.left = Math.random() * 100 + "%"
+        particle.style.top = Math.random() * 100 + "%"
+        particle.style.animationDelay = Math.random() * 8 + "s"
+        particle.style.animationDuration = Math.random() * 4 + 4 + "s"
+
+        // Add different sizes for variety
+        const size = Math.random() * 3 + 2
+        particle.style.width = size + "px"
+        particle.style.height = size + "px"
+
+        // Add different opacity levels
+        particle.style.opacity = Math.random() * 0.6 + 0.2
+
+        particlesContainer.appendChild(particle)
+      }
+    }
+
+    // Mouse Parallax Effect
+    setupMouseParallax() {
+      const hero = document.getElementById("home")
+      const particles = document.querySelectorAll(".particle")
+
+      if (!hero) return
+
+      hero.addEventListener("mousemove", (e) => {
+        const { clientX, clientY } = e
+        const { innerWidth, innerHeight } = window
+
+        const xPos = clientX / innerWidth - 0.5
+        const yPos = clientY / innerHeight - 0.5
+
+        // Apply parallax effect to particles
+        particles.forEach((particle, index) => {
+          const speed = ((index % 3) + 1) * 0.5
+          const x = xPos * speed * 20
+          const y = yPos * speed * 20
+
+          particle.style.transform = `translate(${x}px, ${y}px)`
+        })
+
+        // Apply subtle parallax to hero content
+        const heroContent = hero.querySelector(".home")
+        if (heroContent) {
+          const x = xPos * 10
+          const y = yPos * 10
+          heroContent.style.transform = `translate(${x}px, ${y}px)`
+        }
+      })
+    }
+
+    // Projects Carousel
+    setupProjectsCarousel() {
+      const track = document.getElementById("projects-track")
+      const prevBtn = document.getElementById("carousel-prev")
+      const nextBtn = document.getElementById("carousel-next")
+      const prevBtnNav = document.getElementById("carousel-prev-btn")
+      const nextBtnNav = document.getElementById("carousel-next-btn")
+      const indicators = document.querySelectorAll(".indicator")
+
+      if (!track) return
+
+      let currentSlide = 0
+      const totalSlides = 3 // Number of unique projects
+      let isAutoPlaying = true
+      let autoPlayInterval
+
+      // Get slides per view based on screen size
+      const getSlidesPerView = () => {
+        if (window.innerWidth <= 768) return 1
+        if (window.innerWidth <= 1024) return 2
+        return 3
+      }
+
+      // Calculate slide width
+      const getSlideWidth = () => {
+        const slidesPerView = getSlidesPerView()
+        return 100 / slidesPerView
+      }
+
+      // Update carousel position
+      const updateCarousel = () => {
+        const slideWidth = getSlideWidth()
+        const offset = currentSlide * slideWidth
+        track.style.transform = `translateX(-${offset}%)`
+
+        // Update indicators
+        indicators.forEach((indicator, index) => {
+          indicator.classList.toggle("active", index === currentSlide)
+        })
+      }
+
+      // Next slide
+      const nextSlide = () => {
+        currentSlide = (currentSlide + 1) % totalSlides
+        updateCarousel()
+      }
+
+      // Previous slide
+      const prevSlide = () => {
+        currentSlide = (currentSlide - 1 + totalSlides) % totalSlides
+        updateCarousel()
+      }
+
+      // Go to specific slide
+      const goToSlide = (slideIndex) => {
+        currentSlide = slideIndex
+        updateCarousel()
+      }
+
+      // Auto play functionality
+      const startAutoPlay = () => {
+        if (isAutoPlaying) {
+          autoPlayInterval = setInterval(nextSlide, 4000) // Change slide every 4 seconds
         }
       }
-    }
-    follow(iter) {
-      var x = this.parent.x;
-      var y = this.parent.y;
-      var dist = ((this.x - x) ** 2 + (this.y - y) ** 2) ** 0.5;
-      this.x = x + this.size * (this.x - x) / dist;
-      this.y = y + this.size * (this.y - y) / dist;
-      this.absAngle = Math.atan2(this.y - y, this.x - x);
-      this.relAngle = this.absAngle - this.parent.absAngle;
-      this.updateRelative(false, true);
-      //this.draw();
-      if (iter) {
-        for (var i = 0; i < this.children.length; i++) {
-          this.children[i].follow(true);
-        }
+
+      const stopAutoPlay = () => {
+        clearInterval(autoPlayInterval)
       }
-    }
-  }
-  class LimbSystem {
-    constructor(end, length, speed, creature) {
-      this.end = end;
-      this.length = Math.max(1, length);
-      this.creature = creature;
-      this.speed = speed;
-      creature.systems.push(this);
-      this.nodes = [];
-      var node = end;
-      for (var i = 0; i < length; i++) {
-        this.nodes.unshift(node);
-        //node.stiffness=1;
-        node = node.parent;
-        if (!node.isSegment) {
-          this.length = i + 1;
-          break;
-        }
+
+      // Event listeners
+      if (prevBtn) {
+        prevBtn.addEventListener("click", () => {
+          stopAutoPlay()
+          prevSlide()
+          setTimeout(startAutoPlay, 2000) // Resume auto-play after 2 seconds
+        })
       }
-      this.hip = this.nodes[0].parent;
-    }
-    moveTo(x, y) {
-      this.nodes[0].updateRelative(true, true);
-      var dist = ((x - this.end.x) ** 2 + (y - this.end.y) ** 2) ** 0.5;
-      var len = Math.max(0, dist - this.speed);
-      for (var i = this.nodes.length - 1; i >= 0; i--) {
-        var node = this.nodes[i];
-        var ang = Math.atan2(node.y - y, node.x - x);
-        node.x = x + len * Math.cos(ang);
-        node.y = y + len * Math.sin(ang);
-        x = node.x;
-        y = node.y;
-        len = node.size;
+
+      if (nextBtn) {
+        nextBtn.addEventListener("click", () => {
+          stopAutoPlay()
+          nextSlide()
+          setTimeout(startAutoPlay, 2000)
+        })
       }
-      for (var i = 0; i < this.nodes.length; i++) {
-        var node = this.nodes[i];
-        node.absAngle = Math.atan2(
-          node.y - node.parent.y,
-          node.x - node.parent.x
-        );
-        node.relAngle = node.absAngle - node.parent.absAngle;
-        for (var ii = 0; ii < node.children.length; ii++) {
-          var childNode = node.children[ii];
-          if (!this.nodes.includes(childNode)) {
-            childNode.updateRelative(true, false);
-          }
-        }
+
+      if (prevBtnNav) {
+        prevBtnNav.addEventListener("click", () => {
+          stopAutoPlay()
+          prevSlide()
+          setTimeout(startAutoPlay, 2000)
+        })
       }
-      //this.nodes[0].updateRelative(true,false)
-    }
-    update() {
-      this.moveTo(Input.mouse.x, Input.mouse.y);
-    }
-  }
-  class LegSystem extends LimbSystem {
-    constructor(end, length, speed, creature) {
-      super(end, length, speed, creature);
-      this.goalX = end.x;
-      this.goalY = end.y;
-      this.step = 0; //0 stand still, 1 move forward,2 move towards foothold
-      this.forwardness = 0;
-  
-      //For foot goal placement
-      this.reach =
-        0.9 *
-        ((this.end.x - this.hip.x) ** 2 + (this.end.y - this.hip.y) ** 2) ** 0.5;
-      var relAngle =
-        this.creature.absAngle -
-        Math.atan2(this.end.y - this.hip.y, this.end.x - this.hip.x);
-      relAngle -= 2 * Math.PI * Math.floor(relAngle / 2 / Math.PI + 1 / 2);
-      this.swing = -relAngle + (2 * (relAngle < 0) - 1) * Math.PI / 2;
-      this.swingOffset = this.creature.absAngle - this.hip.absAngle;
-      //this.swing*=(2*(relAngle>0)-1);
-    }
-    update(x, y) {
-      this.moveTo(this.goalX, this.goalY);
-      //this.nodes[0].follow(true,true)
-      if (this.step == 0) {
-        var dist =
-          ((this.end.x - this.goalX) ** 2 + (this.end.y - this.goalY) ** 2) **
-          0.5;
-        if (dist > 1) {
-          this.step = 1;
-          //this.goalX=x;
-          //this.goalY=y;
-          this.goalX =
-            this.hip.x +
-            this.reach *
-              Math.cos(this.swing + this.hip.absAngle + this.swingOffset) +
-            (2 * Math.random() - 1) * this.reach / 2;
-          this.goalY =
-            this.hip.y +
-            this.reach *
-              Math.sin(this.swing + this.hip.absAngle + this.swingOffset) +
-            (2 * Math.random() - 1) * this.reach / 2;
-        }
-      } else if (this.step == 1) {
-        var theta =
-          Math.atan2(this.end.y - this.hip.y, this.end.x - this.hip.x) -
-          this.hip.absAngle;
-        var dist =
-          ((this.end.x - this.hip.x) ** 2 + (this.end.y - this.hip.y) ** 2) **
-          0.5;
-        var forwardness2 = dist * Math.cos(theta);
-        var dF = this.forwardness - forwardness2;
-        this.forwardness = forwardness2;
-        if (dF * dF < 1) {
-          this.step = 0;
-          this.goalX = this.hip.x + (this.end.x - this.hip.x);
-          this.goalY = this.hip.y + (this.end.y - this.hip.y);
-        }
+
+      if (nextBtnNav) {
+        nextBtnNav.addEventListener("click", () => {
+          stopAutoPlay()
+          nextSlide()
+          setTimeout(startAutoPlay, 2000)
+        })
       }
-      //	ctx.strokeStyle='blue';
-      //	ctx.beginPath();
-      //	ctx.moveTo(this.end.x,this.end.y);
-      //	ctx.lineTo(this.hip.x+this.reach*Math.cos(this.swing+this.hip.absAngle+this.swingOffset),
-      //				this.hip.y+this.reach*Math.sin(this.swing+this.hip.absAngle+this.swingOffset));
-      //	ctx.stroke();
-      //	ctx.strokeStyle='black';
-    }
-  }
-  class Creature {
-    constructor(
-      x,
-      y,
-      angle,
-      fAccel,
-      fFric,
-      fRes,
-      fThresh,
-      rAccel,
-      rFric,
-      rRes,
-      rThresh
-    ) {
-      this.x = x; //Starting position
-      this.y = y;
-      this.absAngle = angle; //Staring angle
-      this.fSpeed = 0; //Forward speed
-      this.fAccel = fAccel; //Force when moving forward
-      this.fFric = fFric; //Friction against forward motion
-      this.fRes = fRes; //Resistance to motion
-      this.fThresh = fThresh; //minimum distance to target to keep moving forward
-      this.rSpeed = 0; //Rotational speed
-      this.rAccel = rAccel; //Force when rotating
-      this.rFric = rFric; //Friction against rotation
-      this.rRes = rRes; //Resistance to rotation
-      this.rThresh = rThresh; //Maximum angle difference before rotation
-      this.children = [];
-      this.systems = [];
-    }
-    follow(x, y) {
-      var dist = ((this.x - x) ** 2 + (this.y - y) ** 2) ** 0.5;
-      var angle = Math.atan2(y - this.y, x - this.x);
-      //Update forward
-      var accel = this.fAccel;
-      if (this.systems.length > 0) {
-        var sum = 0;
-        for (var i = 0; i < this.systems.length; i++) {
-          sum += this.systems[i].step == 0;
-        }
-        accel *= sum / this.systems.length;
+
+      // Indicator clicks
+      indicators.forEach((indicator, index) => {
+        indicator.addEventListener("click", () => {
+          stopAutoPlay()
+          goToSlide(index)
+          setTimeout(startAutoPlay, 2000)
+        })
+      })
+
+      // Pause auto-play on hover
+      const carousel = document.getElementById("projects-carousel")
+      if (carousel) {
+        carousel.addEventListener("mouseenter", stopAutoPlay)
+        carousel.addEventListener("mouseleave", startAutoPlay)
       }
-      this.fSpeed += accel * (dist > this.fThresh);
-      this.fSpeed *= 1 - this.fRes;
-      this.speed = Math.max(0, this.fSpeed - this.fFric);
-      //Update rotation
-      var dif = this.absAngle - angle;
-      dif -= 2 * Math.PI * Math.floor(dif / (2 * Math.PI) + 1 / 2);
-      if (Math.abs(dif) > this.rThresh && dist > this.fThresh) {
-        this.rSpeed -= this.rAccel * (2 * (dif > 0) - 1);
-      }
-      this.rSpeed *= 1 - this.rRes;
-      if (Math.abs(this.rSpeed) > this.rFric) {
-        this.rSpeed -= this.rFric * (2 * (this.rSpeed > 0) - 1);
-      } else {
-        this.rSpeed = 0;
-      }
-  
-      //Update position
-      this.absAngle += this.rSpeed;
-      this.absAngle -=
-        2 * Math.PI * Math.floor(this.absAngle / (2 * Math.PI) + 1 / 2);
-      this.x += this.speed * Math.cos(this.absAngle);
-      this.y += this.speed * Math.sin(this.absAngle);
-      this.absAngle += Math.PI;
-      for (var i = 0; i < this.children.length; i++) {
-        this.children[i].follow(true, true);
-      }
-      for (var i = 0; i < this.systems.length; i++) {
-        this.systems[i].update(x, y);
-      }
-      this.absAngle -= Math.PI;
-      this.draw(true);
-    }
-    draw(iter) {
-      var r = 4;
-      ctx.beginPath();
-      ctx.arc(
-        this.x,
-        this.y,
-        r,
-        Math.PI / 4 + this.absAngle,
-        7 * Math.PI / 4 + this.absAngle
-      );
-      ctx.moveTo(
-        this.x + r * Math.cos(7 * Math.PI / 4 + this.absAngle),
-        this.y + r * Math.sin(7 * Math.PI / 4 + this.absAngle)
-      );
-      ctx.lineTo(
-        this.x + r * Math.cos(this.absAngle) * 2 ** 0.5,
-        this.y + r * Math.sin(this.absAngle) * 2 ** 0.5
-      );
-      ctx.lineTo(
-        this.x + r * Math.cos(Math.PI / 4 + this.absAngle),
-        this.y + r * Math.sin(Math.PI / 4 + this.absAngle)
-      );
-      ctx.stroke();
-      if (iter) {
-        for (var i = 0; i < this.children.length; i++) {
-          this.children[i].draw(true);
-        }
-      }
-    }
-  }
-  //Initializes and animates
-  var critter;
-  function setupSimple() {
-    //(x,y,angle,fAccel,fFric,fRes,fThresh,rAccel,rFric,rRes,rThresh)
-    var critter = new Creature(
-      window.innerWidth / 2,
-      window.innerHeight / 2,
-      0,
-      12,
-      1,
-      0.5,
-      16,
-      0.5,
-      0.085,
-      0.5,
-      0.3
-    );
-    var node = critter;
-    //(parent,size,angle,range,stiffness)
-    for (var i = 0; i < 128; i++) {
-      var node = new Segment(node, 8, 0, 3.14159 / 2, 1);
-    }
-    setInterval(function() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      critter.follow(Input.mouse.x, Input.mouse.y);
-    }, 33);
-  }
-  function setupTentacle() {
-    //(x,y,angle,fAccel,fFric,fRes,fThresh,rAccel,rFric,rRes,rThresh)
-    critter = new Creature(
-      window.innerWidth / 2,
-      window.innerHeight / 2,
-      0,
-      12,
-      1,
-      0.5,
-      16,
-      0.5,
-      0.085,
-      0.5,
-      0.3
-    );
-    var node = critter;
-    //(parent,size,angle,range,stiffness)
-    for (var i = 0; i < 32; i++) {
-      var node = new Segment(node, 8, 0, 2, 1);
-    }
-    //(end,length,speed,creature)
-    var tentacle = new LimbSystem(node, 32, 8, critter);
-    setInterval(function() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      critter.follow(canvas.width / 2, canvas.height / 2);
-      ctx.beginPath();
-      ctx.arc(Input.mouse.x, Input.mouse.y, 2, 0, 6.283);
-      ctx.fill();
-    }, 33);
-  }
-  function setupArm() {
-    //(x,y,angle,fAccel,fFric,fRes,fThresh,rAccel,rFric,rRes,rThresh)
-    var critter = new Creature(
-      window.innerWidth / 2,
-      window.innerHeight / 2,
-      0,
-      12,
-      1,
-      0.5,
-      16,
-      0.5,
-      0.085,
-      0.5,
-      0.3
-    );
-    var node = critter;
-    //(parent,size,angle,range,stiffness)
-    for (var i = 0; i < 3; i++) {
-      var node = new Segment(node, 80, 0, 3.1416, 1);
-    }
-    var tentacle = new LimbSystem(node, 3, critter);
-    setInterval(function() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      critter.follow(canvas.width / 2, canvas.height / 2);
-    }, 33);
-    ctx.beginPath();
-    ctx.arc(Input.mouse.x, Input.mouse.y, 2, 0, 6.283);
-    ctx.fill();
-  }
-  
-  function setupTestSquid(size, legs) {
-    //(x,y,angle,fAccel,fFric,fRes,fThresh,rAccel,rFric,rRes,rThresh)
-    critter = new Creature(
-      window.innerWidth / 2,
-      window.innerHeight / 2,
-      0,
-      size * 10,
-      size * 3,
-      0.5,
-      16,
-      0.5,
-      0.085,
-      0.5,
-      0.3
-    );
-    var legNum = legs;
-    var jointNum = 32;
-    for (var i = 0; i < legNum; i++) {
-      var node = critter;
-      var ang = Math.PI / 2 * (i / (legNum - 1) - 0.5);
-      for (var ii = 0; ii < jointNum; ii++) {
-        var node = new Segment(
-          node,
-          size * 64 / jointNum,
-          ang * (ii == 0),
-          3.1416,
-          1.2
-        );
-      }
-      //(end,length,speed,creature,dist)
-      var leg = new LegSystem(node, jointNum, size * 30, critter);
-    }
-    setInterval(function() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      critter.follow(Input.mouse.x, Input.mouse.y);
-    }, 33);
-  }
-  function setupLizard(size, legs, tail) {
-    var s = size;
-    //(x,y,angle,fAccel,fFric,fRes,fThresh,rAccel,rFric,rRes,rThresh)
-    critter = new Creature(
-      window.innerWidth / 2,
-      window.innerHeight / 2,
-      0,
-      s * 10,
-      s * 2,
-      0.5,
-      16,
-      0.5,
-      0.085,
-      0.5,
-      0.3
-    );
-    var spinal = critter;
-    //(parent,size,angle,range,stiffness)
-    //Neck
-    for (var i = 0; i < 6; i++) {
-      spinal = new Segment(spinal, s * 4, 0, 3.1415 * 2 / 3, 1.1);
-      for (var ii = -1; ii <= 1; ii += 2) {
-        var node = new Segment(spinal, s * 3, ii, 0.1, 2);
-        for (var iii = 0; iii < 3; iii++) {
-          node = new Segment(node, s * 0.1, -ii * 0.1, 0.1, 2);
-        }
-      }
-    }
-    //Torso and legs
-    for (var i = 0; i < legs; i++) {
-      if (i > 0) {
-        //Vertebrae and ribs
-        for (var ii = 0; ii < 6; ii++) {
-          spinal = new Segment(spinal, s * 4, 0, 1.571, 1.5);
-          for (var iii = -1; iii <= 1; iii += 2) {
-            var node = new Segment(spinal, s * 3, iii * 1.571, 0.1, 1.5);
-            for (var iv = 0; iv < 3; iv++) {
-              node = new Segment(node, s * 3, -iii * 0.3, 0.1, 2);
+
+      // Handle window resize
+      window.addEventListener(
+        "resize",
+        utils.debounce(() => {
+          updateCarousel()
+        }, 250),
+      )
+
+      // Touch/swipe support for mobile
+      let startX = 0
+      let endX = 0
+
+      if (carousel) {
+        carousel.addEventListener("touchstart", (e) => {
+          startX = e.touches[0].clientX
+          stopAutoPlay()
+        })
+
+        carousel.addEventListener("touchmove", (e) => {
+          endX = e.touches[0].clientX
+        })
+
+        carousel.addEventListener("touchend", () => {
+          const diff = startX - endX
+          if (Math.abs(diff) > 50) {
+            // Minimum swipe distance
+            if (diff > 0) {
+              nextSlide()
+            } else {
+              prevSlide()
             }
           }
-        }
-      }
-      //Legs and shoulders
-      for (var ii = -1; ii <= 1; ii += 2) {
-        var node = new Segment(spinal, s * 12, ii * 0.785, 0, 8); //Hip
-        node = new Segment(node, s * 16, -ii * 0.785, 6.28, 1); //Humerus
-        node = new Segment(node, s * 16, ii * 1.571, 3.1415, 2); //Forearm
-        for (
-          var iii = 0;
-          iii < 4;
-          iii++ //fingers
-        ) {
-          new Segment(node, s * 4, (iii / 3 - 0.5) * 1.571, 0.1, 4);
-        }
-        new LegSystem(node, 3, s * 12, critter, 4);
-      }
-    }
-    //Tail
-    for (var i = 0; i < tail; i++) {
-      spinal = new Segment(spinal, s * 4, 0, 3.1415 * 2 / 3, 1.1);
-      for (var ii = -1; ii <= 1; ii += 2) {
-        var node = new Segment(spinal, s * 3, ii, 0.1, 2);
-        for (var iii = 0; iii < 3; iii++) {
-          node = new Segment(node, s * 3 * (tail - i) / tail, -ii * 0.1, 0.1, 2);
-        }
-      }
-    }
-    setInterval(function() {
-      ctx.clearRect(0, 0, canvas.width, canvas.height);
-      critter.follow(Input.mouse.x, Input.mouse.y);
-    }, 33);
-  }
-  canvas.style.backgroundColor = "transparent";
-  ctx.strokeStyle = "white";
-  //setupSimple();//Just the very basic string
-  //setupTentacle();//Tentacle that reaches for mouse
-  //setupLizard(.5,100,128);//Literal centipede
-  //setupSquid(2,8);//Spidery thing
-  var legNum = Math.floor(1 + Math.random() * 12);
-  setupLizard(
-    8 / Math.sqrt(legNum),
-    legNum,
-    Math.floor(4 + Math.random() * legNum * 8)
-  );
-
-// ====================projects section==============================
-
-const projects = [
-   {
-        projectImageUrl: './assets/TDR_SS.png',
-        projectName: 'TDR Foundation Official Website',
-        projectDescription: "I was responsible for Design, develop and maintain the official website of TDR Foundation. Customization of layout and themes according to demand, added new features like enhanced security, add membership features for our clients etc.",
-        projectStack: ['HTML', 'CSS', 'JavaScript', 'PHP', "MySQL", "Bootstrap"]
-    },
-    {
-        projectImageUrl: './assets/svurg.png',
-        projectName: 'SVURG Official Website',
-        projectDescription: "I was responsible for Design, develop and maintain the official website of SVURG Digital System Soutions. Customization of layout and themes according to demand, added new features like enhanced security, add membership features for our clients etc.",
-        projectStack: ['HTML', 'CSS', 'JavaScript', 'PHP', "MySQL", "Bootstrap"]
-    },
-    {
-        projectImageUrl: './assets/masterguardSite_SS.png',
-        projectName: 'Masterguard Official Website',
-        projectDescription: "This project showcases my frontend skills of building a Business web's UI along with making it responsive.",
-        projectStack: ['HTML', 'CSS', 'Bootstrap','MySQL', 'WordPress']
-    },
-    // {
-    //     projectImageUrl: './assets/MagneticmeterImg.jpeg',
-    //     projectName: 'Magnetic Meter for CNC Machine',
-    //     projectDescription: ' Developed an Embedded system to use this as a feedback system for CNC Machine for checking X, Y and Z coordinates using AS5600 magnetic sensor and MSPMOL1306 controller.',
-    //     projectStack: ['ESP32', 'MSPMOL1306', 'AS5600',]
-
-    // },
-    // {
-    //     projectImageUrl: './assets/StepperMotorImg2.jpeg',
-    //     projectName: "Stepper Motor Controller",
-    //     projectDescription: "Developed an embedded system to control a stepper motor using ESP32 Implemented a TFT touchscreen UI for motor control with real-time feedback. Designed hierarchical menu navigation using a rotary encoder and button controls",
-    //     projectStack: ['ESP32', 'Driver', 'TFT Display', 'Rotary Encoder']
-    // },
-    
-    
-    
-    
-];
-
-let totalProjectStack = [];
-for(const project of projects) {
-    totalProjectStack.push(...project.projectStack)
-}
-
-const projectImages = document.querySelectorAll('.project-image img');
-const projectNames = document.querySelectorAll('.project-name');
-const projectDetail = document.querySelectorAll('.about-project');
-const projectStacks = document.querySelectorAll('.tech-p');
-
-projectImages.forEach(function(value, key) {
-    value.src = projects[key].projectImageUrl;
-});
-
-projectNames.forEach(function(value, key) {
-    value.textContent = projects[key].projectName;
-});
-
-projectDetail.forEach(function(value, key) {
-    value.textContent = projects[key].projectDescription;
-});
-
-projectStacks.forEach(function(value, key) {
-    value.textContent = totalProjectStack[key];
-})
-
-// =======================navbar========================
-const openBtn = document.querySelector('.open')
-const closeBtn = document.querySelector('.close')
-const navItemsOpen = document.querySelector('.nav-items-open');
-const writeClose = document.querySelector('.write i');
-const submitTestimonial = document.querySelector('.submit');
-
-openBtn.addEventListener('click', function() {
-    navItemsOpen.style.display = 'flex';
-    openBtn.style.display = 'none';
-    closeBtn.style.display = 'inline-block';
-})
-
-closeBtn.addEventListener('click', function() {
-    navItemsOpen.style.display = 'none';
-    openBtn.style.display = 'inline-block';
-    closeBtn.style.display = 'none';
-})
-
-document.querySelectorAll('.item-open').forEach(link => {
-    link.addEventListener('click', function() {
-        navItemsOpen.style.display = 'none';
-        openBtn.style.display = 'inline-block';
-        closeBtn.style.display = 'none';
-    })
-});
-
-const swiper = new Swiper(".mySwiper", {
-    slidesPerView: 1,
-    spaceBetween: 20,
-    pagination: {
-      el: ".swiper-pagination",
-      clickable: true,
-    },
-    breakpoints: {
-        768: {
-            slidesPerView: 2,
-            spaceBetween: 40
-        },
-        1200: {
-            slidesPerView: 3,
-            spaceBetween: 80
-        }
-    }
-});
-/*==================== FORM SUBMIT ====================*/
-document.getElementById("contact-form").addEventListener("submit", (e) => {
-    e.preventDefault();
-  
-    //button animation
-    document.getElementById("email-submit").innerText = "Sending...";
-  
-    if (
-      document.getElementById("name").value != "" &&
-      document.getElementById("email").value != "" &&
-      document.getElementById("message").value != ""
-    ) {
-      let params = {
-        name: document.getElementById("name").value,
-        email: document.getElementById("email").value,
-        message: document.getElementById("message").value,
-      };
-  
-      const serviceID = "service_a2ox7tt";
-      const templateID = "template_rtewoxe";
-  
-      emailjs
-        .send(serviceID, templateID, params)
-        .then((res) => {
-          document.getElementById("name").value = "";
-          document.getElementById("email").value = "";
-          document.getElementById("message").value = "";
-  
-          document.getElementById("email-submit").innerHTML = `
-            Send message
-            <i class="uil uil-message button__icon"></i>`;
-  
-          alert("Your message send susscessfully!");
+          setTimeout(startAutoPlay, 2000)
         })
-        .catch((err) => {
-          document.getElementById("email-submit").innerHTML = `
-            Send message
-            <i class="uil uil-message button__icon"></i>`;
-          console.log(err);
-        });
-    } else {
-      alert("Please fill out all the fields");
+      }
+
+      // Initialize
+      updateCarousel()
+      startAutoPlay()
+
+      // Intersection Observer to pause/resume when section is visible
+      const projectsSection = document.getElementById("projects")
+      if (projectsSection) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                isAutoPlaying = true
+                startAutoPlay()
+              } else {
+                isAutoPlaying = false
+                stopAutoPlay()
+              }
+            })
+          },
+          { threshold: 0.5 },
+        )
+
+        observer.observe(projectsSection)
+      }
     }
-  });
 
+    // Scroll Animations
+    setupScrollAnimations() {
+      const observerOptions = {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px",
+      }
 
-ScrollReveal(
-    { reset: true,
-       distance: '60px',
-       duration: 2000,
-       delay: 400 
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.style.opacity = "1"
+            entry.target.style.transform = "translateY(0)"
+          }
+        })
+      }, observerOptions)
+
+      // Observe elements for scroll animations
+      const animatedElements = document.querySelectorAll(
+        ".skill-item, .service-card, .process-step, .project-card, .stat-card, .contact-item",
+      )
+      animatedElements.forEach((el) => {
+        el.style.opacity = "0"
+        el.style.transform = "translateY(30px)"
+        el.style.transition = "all 0.6s ease"
+        observer.observe(el)
+      })
     }
-);
 
-ScrollReveal().reveal('.home-para, .contact-head', {delay: 100, origin: 'bottom'});
-ScrollReveal().reveal('.about-description, .project-image', {delay: 100, origin: 'left'});
-ScrollReveal().reveal('.home-name, .mail, .contact-message', {delay: 200, origin: 'bottom'});
-ScrollReveal().reveal('.home-designation, .contact a', {delay: 300, origin: 'bottom'});
-ScrollReveal().reveal('.home-features, .about-profile, .project-details', {delay: 100, origin: 'right'});
-ScrollReveal().reveal('.social-links, .swiper-wrapper', {delay: 100, origin: 'top'});
+    // Skills Animation
+    setupSkillsAnimation() {
+      const skillsObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const progressFill = entry.target.querySelector(".progress-fill")
+              if (progressFill) {
+                const targetWidth = progressFill.getAttribute("data-width")
+                setTimeout(() => {
+                  progressFill.style.width = targetWidth + "%"
+                }, 500)
+              }
+            }
+          })
+        },
+        { threshold: 0.5 },
+      )
+
+      document.querySelectorAll(".skill-item").forEach((skill) => {
+        skillsObserver.observe(skill)
+      })
+    }
+
+    // Stats Counter Animation
+    setupStatsCounter() {
+      const statsObserver = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              const counter = entry.target
+              const target = Number.parseInt(counter.getAttribute("data-target"))
+              const increment = target / 100
+              let current = 0
+
+              const updateCounter = () => {
+                if (current < target) {
+                  current += increment
+                  counter.textContent = Math.ceil(current)
+                  setTimeout(updateCounter, 20)
+                } else {
+                  counter.textContent = target
+                }
+              }
+
+              updateCounter()
+            }
+          })
+        },
+        { threshold: 0.5 },
+      )
+
+      document.querySelectorAll(".stat-number").forEach((stat) => {
+        statsObserver.observe(stat)
+      })
+    }
+
+    // Contact Form
+    setupContactForm() {
+      const contactForm = document.getElementById("contact-form")
+      const submitBtn = document.getElementById("submit-btn")
+
+      if (!contactForm || !submitBtn) return
+
+      contactForm.addEventListener("submit", async (e) => {
+        e.preventDefault()
+
+        const name = document.getElementById("name").value
+        const email = document.getElementById("email").value
+        const message = document.getElementById("message").value
+
+        if (!name || !email || !message) {
+          this.showNotification("Please fill out all fields", "error")
+          return
+        }
+
+        // Show loading state
+        submitBtn.innerHTML = '<span>Sending...</span><i class="uil uil-spinner-alt"></i>'
+        submitBtn.disabled = true
+
+        try {
+          // EmailJS integration (if available)
+          if (typeof emailjs !== "undefined") {
+            const params = { name, email, message }
+            await emailjs.send("service_a2ox7tt", "template_rtewoxe", params)
+            contactForm.reset()
+            this.showNotification("Message sent successfully!", "success")
+          } else {
+            // Fallback - just show success message
+            contactForm.reset()
+            this.showNotification("Message received! (Demo mode)", "success")
+          }
+        } catch (error) {
+          console.error("Email send error:", error)
+          this.showNotification("Failed to send message. Please try again.", "error")
+        } finally {
+          // Reset button
+          submitBtn.innerHTML = '<span>Send Message</span><i class="uil uil-message"></i>'
+          submitBtn.disabled = false
+        }
+      })
+    }
+
+    // Notification System
+    showNotification(message, type) {
+      const notification = document.createElement("div")
+      notification.className = `notification ${type}`
+      notification.textContent = message
+
+      notification.style.cssText = `
+                position: fixed;
+                top: 20px;
+                right: 20px;
+                padding: 1rem 2rem;
+                border-radius: 10px;
+                color: white;
+                font-weight: 600;
+                z-index: 10000;
+                transform: translateX(100%);
+                transition: transform 0.3s ease;
+                background: ${type === "success" ? "#10b981" : "#ef4444"};
+            `
+
+      document.body.appendChild(notification)
+
+      setTimeout(() => {
+        notification.style.transform = "translateX(0)"
+      }, 100)
+
+      setTimeout(() => {
+        notification.style.transform = "translateX(100%)"
+        setTimeout(() => {
+          if (document.body.contains(notification)) {
+            document.body.removeChild(notification)
+          }
+        }, 300)
+      }, 3000)
+    }
+
+    // GitHub Calendar
+    setupGithubCalendar() {
+      if (typeof GitHubCalendar !== "undefined") {
+        try {
+          GitHubCalendar(".calendar", "abhaytomar01", {
+            responsive: true,
+            global_stats: false,
+            tooltips: true,
+          })
+        } catch (error) {
+          console.log("GitHub Calendar not loaded")
+        }
+      }
+    }
+
+    // Smooth Scrolling
+    setupSmoothScrolling() {
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault()
+          const target = document.querySelector(this.getAttribute("href"))
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            })
+          }
+        })
+      })
+    }
+  }
+
+  // Enhanced Cursor Effect
+  class CursorEffect {
+    constructor() {
+      this.cursor = document.createElement("div")
+      this.cursor.className = "custom-cursor"
+      this.cursor.style.cssText = `
+                position: fixed;
+                width: 20px;
+                height: 20px;
+                background: var(--color-text-gold);
+                border-radius: 50%;
+                pointer-events: none;
+                z-index: 9999;
+                transition: transform 0.1s ease;
+                opacity: 0.7;
+                mix-blend-mode: difference;
+            `
+      document.body.appendChild(this.cursor)
+      this.init()
+    }
+
+    init() {
+      document.addEventListener("mousemove", (e) => {
+        this.cursor.style.left = e.clientX - 10 + "px"
+        this.cursor.style.top = e.clientY - 10 + "px"
+      })
+
+      document.addEventListener("mousedown", () => {
+        this.cursor.style.transform = "scale(0.8)"
+      })
+
+      document.addEventListener("mouseup", () => {
+        this.cursor.style.transform = "scale(1)"
+      })
+
+      document.addEventListener("mouseleave", () => {
+        this.cursor.style.opacity = "0"
+      })
+
+      document.addEventListener("mouseenter", () => {
+        this.cursor.style.opacity = "0.7"
+      })
+    }
+  }
+
+  // Utility functions
+  const utils = {
+    debounce(func, wait) {
+      let timeout
+      return function executedFunction(...args) {
+        const later = () => {
+          clearTimeout(timeout)
+          func(...args)
+        }
+        clearTimeout(timeout)
+        timeout = setTimeout(later, wait)
+      }
+    },
+
+    throttle(func, limit) {
+      let inThrottle
+      return function () {
+        const args = arguments
+
+        if (!inThrottle) {
+          func.apply(this, args)
+          inThrottle = true
+          setTimeout(() => (inThrottle = false), limit)
+        }
+      }
+    },
+  }
+
+  // Initialize EmailJS if available
+  if (typeof window.emailjs !== "undefined") {
+    emailjs = window.emailjs
+    emailjs.init("IgJ3aC57FEsrcQGwS")
+  }
+
+  // Initialize GitHubCalendar if available
+  if (typeof window.GitHubCalendar !== "undefined") {
+    GitHubCalendar = window.GitHubCalendar
+  }
+
+  // Initialize everything when DOM is loaded
+  document.addEventListener("DOMContentLoaded", () => {
+    new ModernPortfolio()
+    new CursorEffect()
+  })
+
+  // Performance optimizations
+  window.addEventListener(
+    "scroll",
+    utils.throttle(() => {
+      // Handle scroll-based animations here if needed
+    }, 16),
+  ) // ~60fps
+
+  window.addEventListener(
+    "resize",
+    utils.debounce(() => {
+      // Handle resize events here if needed
+    }, 250),
+  )
+
+  // Preload critical images
+  const preloadImages = [
+    "./assets/me22.jpg",
+    "./assets/TDR_SS.png",
+    "./assets/svurg.png",
+    "./assets/masterguardSite_SS.png",
+  ]
+
+  preloadImages.forEach((src) => {
+    const img = new Image()
+    img.src = src
+  })
+})()
